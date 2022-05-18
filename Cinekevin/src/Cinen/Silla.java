@@ -1,5 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Cinen;
 
+import java.util.ArrayList;
+
+/**
+ *
+ * @author usuario
+ */
 public class Silla {
     
     
@@ -20,9 +30,11 @@ public class Silla {
     
     private int ubicacion;
     
-    private boolean danada;
+    private boolean dañada;
     
     private Cliente clientes;
+    
+    private ArrayList<Cliente> listaClientes= new ArrayList<>(); ;
 
     
     public Silla( int numero, int tipo, int ubicacion )
@@ -84,17 +96,17 @@ public class Silla {
     }
 
     
-    public Cliente getPasajero( )
+    public Cliente getCliente( )
     {
         return clientes;
     }
 
     public boolean isDanada() {
-        return danada;
+        return dañada;
     }
 
-    public void setDanada(boolean danada) {
-        this.danada = danada;
+    public void setDanada(boolean dañada) {
+        this.dañada = dañada;
     }
     
     

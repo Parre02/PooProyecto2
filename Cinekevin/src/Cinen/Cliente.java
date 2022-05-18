@@ -1,11 +1,22 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Cinen;
+
 import java.util.ArrayList;
 
+/**
+ *
+ * @author usuario
+ */
 public class Cliente{
       
     private int cedula;
     
     private String nombre;
+    
+    
    
     protected static ArrayList<Cliente> clientes= new ArrayList<>();
 
@@ -16,6 +27,8 @@ public class Cliente{
         this.nombre = nombre;
         Cliente.clientes.add(this);
         
+        
+               
     }
 
     
@@ -39,11 +52,12 @@ public class Cliente{
             return false;
     }
     
-    public String reservar(int tipo, int ubicacion, Cliente cliente ){
-        Sala reserva=new Sala();
+    public String reservar(int tipo, int ubicacion, Cliente cliente, Sala reserva){
+        
         String tip="";
         String tip2="";
         
+        Silla silla = null;
         Silla a=reserva.asignarSilla(tipo, ubicacion, cliente);
         if(a.getTipo()==1){
             tip="Silla_Vip";
@@ -70,4 +84,41 @@ public class Cliente{
     public ArrayList<String> bucarFuncion(){
         return Cartelera.cartelera();
     }
+    
+    
+    public String devolucionCliente(Cliente cliente,Sala sala){
+              
+        Silla silla = null;
+        Silla a=sala.buscarCliente(cliente);
+        a.desasignarSilla();
+        return "Devolucion exitosa";        
+    }
+    
+    /*public String comprarEntrada(Cliente cliente,Sala sala){
+        String a="";
+        if(this.buscarCliente(cliente.getCedula())!=null){          
+    }*/
+    
+    public Cliente buscarCliente(int cedula)
+    {
+        boolean encontrado = false;
+        Silla f=null;
+        for(int i =0; i < Sala.reservas.size(); i++ )
+        {
+            f = Sala.reservas.get(i);
+            if(f.getCliente().getCedula()==cedula )
+            {
+                encontrado = true;
+            }
+        }
+        if( encontrado )
+            return f.getCliente();
+        else
+            return null;
+    }
+    
+    
 }
+               
+                        
+              
