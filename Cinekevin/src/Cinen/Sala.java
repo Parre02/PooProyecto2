@@ -184,19 +184,19 @@ public class Sala {
         return contador;
     }
     
-    public int contarSillasDañadas( )
+    public int contarSillasDanadas( )
     {
         int contador = 0;
         for( int i = 0; i < SILLAS_ECONOMICAS; i++ )
         {
-            if( sillasEconomicas[ i ].isDañada()==false)
+            if( sillasEconomicas[ i ].isDanada()==false)
             {
                 contador++;
             }
         }
         for( int i = 0; i < SILLAS_VIP; i++ )
         {
-            if( sillas_vip[ i ].isDañada()==false)
+            if( sillas_vip[ i ].isDanada()==false)
             {
                 contador++;
             }

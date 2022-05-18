@@ -9,17 +9,17 @@ import java.util.ArrayList;
 public class Pelicula {
     private String nombre;
 	private String director;
-	private int año;
+	private int ano;
 	private int duracion;
 	private String genero;
 	private String pais;
 	private String calificacion;
         protected static ArrayList<Pelicula> peliculas= new ArrayList<>();
 
-    public Pelicula(String nombre, String director, int año, int duracion, String genero, String pais, String calificacion) {
+    public Pelicula(String nombre, String director, int ano, int duracion, String genero, String pais, String calificacion) {
         this.nombre = nombre;
         this.director = director;
-        this.año = año;
+        this.ano = ano;
         this.duracion = duracion;
         this.genero = genero;
         this.pais = pais;
@@ -42,11 +42,11 @@ public class Pelicula {
 	public void setDirector(String director) {
 		this.director = director;
 	}
-	public int getAño() {
-		return año;
+	public int getAno() {
+		return ano;
 	}
-	public void setAño(int año) {
-		this.año = año;
+	public void setAno(int ano) {
+		this.ano = ano;
 	}
 	public int getDuracion() {
 		return duracion;

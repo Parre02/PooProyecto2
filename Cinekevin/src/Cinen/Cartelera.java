@@ -11,7 +11,7 @@ public class Cartelera {
             
             String a="nombre: "+ p.getNombre()
 			 +"\ndirector: "+ p.getDirector()
-			   +"\naño: "+p.getAño()
+			   +"\nano: "+p.getAno()
                             +"\nduracion: "+p.getDuracion()
                               +"\ngenero: "+p.getGenero()
                                 +"\npais: "+p.getPais()

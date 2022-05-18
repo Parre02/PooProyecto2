@@ -20,7 +20,7 @@ public class Silla {
     
     private int ubicacion;
     
-    private boolean dañada;
+    private boolean danada;
     
     private Cliente clientes;
 
@@ -89,12 +89,12 @@ public class Silla {
         return clientes;
     }
 
-    public boolean isDañada() {
-        return dañada;
+    public boolean isDanada() {
+        return danada;
     }
 
-    public void setDañada(boolean dañada) {
-        this.dañada = dañada;
+    public void setDanada(boolean danada) {
+        this.danada = danada;
     }
     
     
