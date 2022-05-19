@@ -99,23 +99,7 @@ public class Cliente{
         if(this.buscarCliente(cliente.getCedula())!=null){          
     }*/
     
-    public Cliente buscarCliente(int cedula)
-    {
-        boolean encontrado = false;
-        Silla f=null;
-        for(int i =0; i < Sala.reservas.size(); i++ )
-        {
-            f = Sala.reservas.get(i);
-            if(f.getCliente().getCedula()==cedula )
-            {
-                encontrado = true;
-            }
-        }
-        if( encontrado )
-            return f.getCliente();
-        else
-            return null;
-    }
+   
     
     
 }
