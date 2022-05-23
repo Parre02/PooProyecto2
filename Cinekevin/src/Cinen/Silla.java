@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Silla {
     
-    
+    //Hacer ediciones y tocar 
     public final static int SILLAS_VIP = 1;
    
     public final static int SILLAS_ECONOMICAS= 2;

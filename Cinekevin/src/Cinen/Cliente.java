@@ -18,18 +18,18 @@ public class Cliente{
     
     
    
-    protected static ArrayList<Cliente> clientes= new ArrayList<>();
+    private ArrayList<Cliente> clientes= new ArrayList<>();
 
     
     public Cliente(int cedula,String nombre)
     {
         this.cedula = cedula;
         this.nombre = nombre;
-        Cliente.clientes.add(this);
         
         
                
     }
+    
 
     
     public int getCedula( )
@@ -42,6 +42,7 @@ public class Cliente{
     {
         return nombre;
     }
+
 
    
     public boolean confirmarCliente( Cliente confirmar )
@@ -115,7 +116,8 @@ public class Cliente{
             return f.getCliente();
         else
             return null;
-    }
+    } // Hacer un rediseño de este metodo debido que en la linea 108 Sala.reservas.get se esta ingresando a la clase no la instancia o objeto.
+    
     
     
 }
