@@ -40,7 +40,7 @@ public class NewMain {
                     int cedula = entrada.nextInt();
                     String nombre = entrada.next();
                     Cliente cliente = new Cliente(cedula, nombre);
-                    cliente.
+                    cliente
                     break;
                 case 2:
                     break;

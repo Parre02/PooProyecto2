@@ -118,6 +118,7 @@ public class Cliente{
             return null;
     } // Hacer un rediseño de este metodo debido que en la linea 108 Sala.reservas.get se esta ingresando a la clase no la instancia o objeto.
     
+   
     
     
 }

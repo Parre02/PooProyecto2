@@ -18,7 +18,7 @@ public class Sala {
     public ArrayList<String> lateral_I=new ArrayList<>();
     public ArrayList<String> Cental=new ArrayList<>();
     public ArrayList<String> lateral_D=new ArrayList<>();
-    public static ArrayList<Silla> reservas=new ArrayList<>();
+    public ArrayList<Silla> reservas=new ArrayList<>();
     
     
 
@@ -27,12 +27,14 @@ public class Sala {
     {
         int ubicacion;
 
-        
+        //cantidad de sillas vip que vamos a tener en la sala
         sillas_vip = new Silla[SILLAS_VIP];
 
-        
+        //cantidad de sillas economicas que vamos a tener en la sala
         sillasEconomicas = new Silla[SILLAS_ECONOMICAS];
-
+        
+        
+        //asiganamos cuales van el numero que van ser las sillas  vip, sus atributos
         sillas_vip[ 0 ] = new Silla( 1, Silla.SILLAS_VIP, Silla.CENTRAL );
         sillas_vip[ 1 ] = new Silla( 2, Silla.SILLAS_VIP, Silla.CENTRAL );
         sillas_vip[ 2 ] = new Silla( 3, Silla.SILLAS_VIP, Silla.CENTRAL );
@@ -42,9 +44,11 @@ public class Sala {
         sillas_vip[ 6 ] = new Silla( 7, Silla.SILLAS_VIP, Silla.CENTRAL );
         sillas_vip[ 7 ] = new Silla( 8, Silla.SILLAS_VIP, Silla.CENTRAL );
 
+        
+        //luego vamos a distribuir la ubicacion de las sillas
         for( int numSilla = 1 + SILLAS_VIP, j = 1; j <= SILLAS_ECONOMICAS; numSilla++, j++ )
         {
-            
+            //la ubicacion del lateral derecho, esto es un ejemplo podemos cambiarlo
             if( j % 6 == 1 || j % 6 == 0 ){
                 ubicacion = Silla.LATERAL_DERECHO;
                 int a=j;
@@ -71,6 +75,8 @@ public class Sala {
         }
     }
     
+    
+    //asiganmos la silla el tipo, la ubicacion y el cliente
     public Silla asignarSilla( int tipo, int ubicacion, Cliente cliente)
     {
         
@@ -92,6 +98,8 @@ public class Sala {
         return silla;
     }
     
+    
+    //lo mismo de arriba pero esta vez podemos escoger el numero de la silla que es el lugar
     public Silla asignarSilla( int tipo, int ubicacion, Cliente cliente, int lugar)
     {
         
@@ -106,10 +114,8 @@ public class Sala {
                      silla= this.buscarSillaVipLibre(lugar);
                      reservas.add(silla);
                      
-                 }
-                 
-            
-        }
+                 }             
+           }
             
         }
         else if(tipo == Silla.SILLAS_ECONOMICAS )
@@ -122,8 +128,7 @@ public class Sala {
                      silla= this.buscarSillaEconomicaLibre(lugar);
                      reservas.add(silla);
                  }
-            
-        }
+             }
         }
         
         if( silla != null )
@@ -135,6 +140,8 @@ public class Sala {
  
     
     
+    
+    //buscamos un silla libre vip que esta libre
     public Silla buscarSillaVipLibre()
     {
         boolean encontrado = false;
@@ -153,6 +160,12 @@ public class Sala {
             return null;
     }
     
+    
+    
+    
+    
+    
+    //aqui buscamos la silla pero cteniendo en cuenta el numero de la silla que es lugar
     public Silla buscarSillaVipLibre(int lugar)
     {
         boolean encontrado = false;
@@ -172,6 +185,8 @@ public class Sala {
     }
 
     
+    
+    //buscamos sillas economicas con el tipo si es central, lado izquierdo o derecho 
     public Silla buscarSillaEconomicaLibre( int ubicacion )
     {
         boolean encontrado = false;
@@ -190,6 +205,10 @@ public class Sala {
             return null;
     }
     
+    
+    
+    
+     //buscamos sillas economicas con el tipo si es central, lado izquierdo o derecho  teniendo en cuenta el numero de la silla
      public Silla buscarSillaEconomicaLibre( int ubicacion, int lugar)
     {
         boolean encontrado = false;
@@ -211,6 +230,9 @@ public class Sala {
     
 
     
+     //aqui buscaremos el cliente y nos retornara la silla donde esta ubicada, este lo utilizamos en otros metodos cuando 
+     //no conocemos si es vip o economico
+     
     public Silla buscarCliente(Cliente c)
     {
         
@@ -223,7 +245,9 @@ public class Sala {
 
     }
 
-    
+
+
+//buscamos el cliente vip y que nos retorne la silla donde esta ubicado    
     public Silla buscarClienteVip(Cliente cliente)
     {
         boolean encontrado = false;
@@ -243,6 +267,8 @@ public class Sala {
     }
 
     
+    
+    //buscamos el clleinte que economico y nos dara la silla en donde esta asiganddo
     public Silla buscarClienteEconomico(Cliente cliente)
     {
         boolean encontrado = false;
@@ -262,6 +288,8 @@ public class Sala {
     }
 
     
+    
+    //le quitamos la asigancion a un cliente y nos retornara true si esta desigando
     public boolean desasignarSilla(Cliente cliente)
     {
         
@@ -277,6 +305,8 @@ public class Sala {
     }
 
     
+    
+    //metodo por codicia jajajaj puesto por si alguna vez lo utlizamos 
     public int contarSillasVipOcupadas( )
     {
         int contador = 0;
@@ -290,6 +320,8 @@ public class Sala {
         return contador;
     }
     
+    
+    //igual por codicia pero pues de pronto lo utlicemos mas que el antaerior 
     public int contarSillasDañadas( )
     {
         int contador = 0;
@@ -311,7 +343,7 @@ public class Sala {
     }
      
 
-    
+    //mas codicia 
     public int contarSillasEconomicasOcupadas( )
     {
         int contador = 0;
@@ -324,8 +356,11 @@ public class Sala {
         }
         return contador;
     }
+    
+    
+    
 
-  
+  //pense que podria sevir para algo pero no es muy importante
     public double calcularPorcentajeOcupacion( )
     {
         double porcentaje;
@@ -335,10 +370,12 @@ public class Sala {
         return porcentaje;
     }
 
-  
+    
+    
+    
+  //importante nos da las sillas ocupadas en un array que estan libres
     public ArrayList<String> obtenerSillasVip( )
-    {
-        
+    {       
         Silla silla = null;
         ArrayList<String> s=new ArrayList<>();
         for( int i = 0; i < SILLAS_VIP; i++ )
@@ -356,7 +393,7 @@ public class Sala {
         return s;
     }
 
-    
+//importante nos da el numero de sillas en un array disponobles    
     public ArrayList<String> obtenerSillasEconomicas( )
     {
         Silla silla = null;
@@ -382,6 +419,8 @@ public class Sala {
     }
 
         
+    
+    //nos da las sillas vacias importante
      public ArrayList<String> darSillasVacias()
     {
        Silla silla = null;
@@ -404,11 +443,32 @@ public class Sala {
                String b=a+"";
                s.add(b);
            }
-       }
-        
-        
-               
+       }              
         return s;
+    }
+     
+     
+     
+     
+     
+     
+     //busca el cliente por cedula de los que han hechos reservas
+     public Cliente buscarCliente(int cedula)
+    {
+        boolean encontrado = false;
+        Silla f=null;
+        for(int i =0; i < this.reservas.size(); i++ )
+        {
+            f = this.reservas.get(i);
+            if(f.getCliente().getCedula()==cedula )
+            {
+                encontrado = true;
+            }
+        }
+        if( encontrado )
+            return f.getCliente();
+        else
+            return null;
     }
      
     
