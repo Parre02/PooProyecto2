@@ -43,14 +43,29 @@ public class Cliente{
         return nombre;
     }
 
+    public Cliente setclientes(Cliente cliente ){
+        clientes.add(cliente);
+        return cliente;
+
+
+    }
+
+
+    @Override
+    public String toString(){
+        String varImpr = "Se ha agregado satisfactoriamente el cliente" ;
+        return varImpr;
+
+    }
+
+
 
    
     public boolean confirmarCliente( Cliente confirmar )
-    {
-        if( cedula == confirmar.getCedula( ) )
-            return true;
-        else
-            return false;
+    {  
+        for (int i = 0; i < clientes.length; i++) {
+            
+        }
     }
     
     public String reservar(int tipo, int ubicacion, Cliente cliente, Sala reserva){
@@ -100,7 +115,7 @@ public class Cliente{
         if(this.buscarCliente(cliente.getCedula())!=null){          
     }*/
     
-    public Cliente buscarCliente(int cedula)
+    /*public Cliente buscarCliente(int cedula)
     {
         boolean encontrado = false;
         Silla f=null;
@@ -116,7 +131,7 @@ public class Cliente{
             return f.getCliente();
         else
             return null;
-    } // Hacer un rediseño de este metodo debido que en la linea 108 Sala.reservas.get se esta ingresando a la clase no la instancia o objeto.
+    }*/ // Hacer un rediseño de este metodo debido que en la linea 108 Sala.reservas.get se esta ingresando a la clase no la instancia o objeto.
     
    
     
