@@ -1,6 +1,7 @@
 package Cinen;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 
@@ -15,9 +16,8 @@ public class Sala {
     private Silla[] sillasEconomicas;
     
     
-    public ArrayList<String> lateral_I=new ArrayList<>();
-    public ArrayList<String> Cental=new ArrayList<>();
-    public ArrayList<String> lateral_D=new ArrayList<>();
+    
+    
     public ArrayList<Silla> reservas=new ArrayList<>();
     
     
@@ -51,24 +51,17 @@ public class Sala {
             //la ubicacion del lateral derecho, esto es un ejemplo podemos cambiarlo
             if( j % 6 == 1 || j % 6 == 0 ){
                 ubicacion = Silla.LATERAL_DERECHO;
-                int a=j;
-                String b=a+"";
-          
-                lateral_I.add(b);
+                
             
             }else if( j % 6 == 2 || j % 6 == 5 ){
                 ubicacion = Silla.CENTRAL;
-                int a=j;
-                String b=a+"";
+                               
           
-                lateral_D.add(b);
+                
             
             }else{
                 ubicacion = Silla.LATERAL_IZQUIERDO;
-                int a=j;
-                String b=a+"";
-          
-                Cental.add(b);
+                
             }
 
             sillasEconomicas[ j - 1 ] = new Silla( numSilla, Silla.SILLAS_ECONOMICAS, ubicacion );
@@ -83,12 +76,20 @@ public class Sala {
         Silla silla = null;
         if( tipo == Silla.SILLAS_VIP )
         {
-            silla = buscarSillaVipLibre();
+            Scanner lugares = new Scanner(System.in);
+            int numeroSilla = 0;
+            System.out.print(this.obtenerSillasVip()+"\n\"Escoge una silla: ");
+            numeroSilla = lugares.nextInt();
+            silla = buscarSillaVipLibre(numeroSilla);
             reservas.add(silla);
         }
         else if(tipo == Silla.SILLAS_ECONOMICAS )
-        {
-            silla = buscarSillaEconomicaLibre( ubicacion );
+        {   
+            Scanner lugares = new Scanner(System.in);
+            int numeroSilla = 0;
+            System.out.print(this.obtenerSillasVip()+"\n\"Escoge una silla: ");
+            numeroSilla = lugares.nextInt();
+            silla = buscarSillaEconomicaLibre( ubicacion, numeroSilla);
             reservas.add(silla);
         }
         if( silla != null )
@@ -173,9 +174,13 @@ public class Sala {
         for( int i = 0; i < SILLAS_VIP && !encontrado; i++ )
         {
             silla = sillas_vip[ i ];
-            if( ! ( silla.sillaAsignada( ) ) && silla.getUbicacion( ) == 2 && silla.getNumero()==lugar)
+            if( ( silla.sillaAsignada( )==false ) && silla.getUbicacion( ) == 2){
+                if(silla.getNumero()==lugar)
+            
+                    
             {
                 encontrado = true;
+            }
             }
         }
         if( encontrado )
@@ -216,11 +221,13 @@ public class Sala {
         for( int i = 0; i < SILLAS_ECONOMICAS && !encontrado; i++ )
         {
             silla = sillasEconomicas[ i ];
-            if( ! ( silla.sillaAsignada( ) ) && silla.getUbicacion( ) == ubicacion && silla.getNumero()==lugar )
+            if( ( silla.sillaAsignada( )==false ) && silla.getUbicacion( ) == ubicacion )
+                
             {
                 encontrado = true;
             }
         }
+    
         if( encontrado )
             return silla;
         else
@@ -228,7 +235,36 @@ public class Sala {
     }
     
     
-
+     
+     //buscamos la silla dañada, aqui tambien podemos ver el dueño de la silla
+      public Silla buscarSillaDanada()
+    {
+        boolean encontrado = false;
+        Silla silla = null;
+        for( int i = 0; i < SILLAS_ECONOMICAS && !encontrado; i++ ){
+           silla = sillasEconomicas[ i ];
+           if((silla.isDanada()==true))
+           {
+               encontrado=true;
+           }
+       }
+       for( int i = 0; i < SILLAS_VIP ; i++ ){
+           silla = sillas_vip[ i ];
+           if(( silla.isDanada( )==true))
+           {
+               
+               encontrado=true;
+       }
+          
+       }
+       
+        if( encontrado )
+            return silla;
+        else
+            return null;
+    }
+    
+     
     
      //aqui buscaremos el cliente y nos retornara la silla donde esta ubicada, este lo utilizamos en otros metodos cuando 
      //no conocemos si es vip o economico
@@ -240,7 +276,7 @@ public class Sala {
         
         if( null == silla )
             
-            silla = buscarClienteEconomico( c);
+            silla = buscarClienteEconomico(c);
         return silla;
 
     }
@@ -321,27 +357,42 @@ public class Sala {
     }
     
     
+    
     //igual por codicia pero pues de pronto lo utlicemos mas que el antaerior 
-    public int contarSillasDañadas( )
+    public int contarSillasDanadas( )
     {
         int contador = 0;
-        for( int i = 0; i < SILLAS_ECONOMICAS; i++ )
+        for( int i = 0; i < SILLAS_ECONOMICAS;  i++ )
         {
-            if( sillasEconomicas[ i ].isDanada()==false)
+            if( sillasEconomicas[ i ].isDanada()==true)
             {
                 contador++;
             }
         }
         for( int i = 0; i < SILLAS_VIP; i++ )
         {
-            if( sillas_vip[ i ].isDanada()==false)
+            if( sillas_vip[ i ].isDanada()==true)
             {
                 contador++;
             }
         }
         return contador;
     }
-     
+   
+    
+    //arreglamos las sillas dñadas
+    public String arreglarSillasDanadas( )
+    {
+        Silla silla=this.buscarSillaDanada();
+        if (silla==null){
+            silla.setDanada(false);
+            return "Se arreglo la silla";
+        }else{
+            return "No hay sillas dañadas ";
+        }
+                      
+    }
+       
 
     //mas codicia 
     public int contarSillasEconomicasOcupadas( )
@@ -447,9 +498,63 @@ public class Sala {
         return s;
     }
      
+ //Lista de las sillas disponibles de la lateral derecho economicas      
+    public ArrayList<String> lateral_D()
+    {
+       Silla silla = null;
+       ArrayList<String> s=new ArrayList<>();
+       for( int i = 0; i < SILLAS_ECONOMICAS; i++ ){
+           silla = sillasEconomicas[ i ];
+           if( ! ( silla.sillaAsignada( ) ) && silla.getUbicacion( ) == 1  )
+            {
+               int a=silla.getNumero();
+               String b=a+"";
+               s.add(b);
+           }
+       
+       }              
+        return s;
+    }
+    
+//Lista de las sillas disponibles de la lateral izqueido economicas       
+    public ArrayList<String> lateral_I()
+    {
+       Silla silla = null;
+       ArrayList<String> s=new ArrayList<>();
+       for( int i = 0; i < SILLAS_ECONOMICAS; i++ ){
+           silla = sillasEconomicas[ i ];
+           if( ! ( silla.sillaAsignada( ) ) && silla.getUbicacion( ) == 3  )
+            {
+               int a=silla.getNumero();
+               String b=a+"";
+               s.add(b);
+           }
+       
+       }              
+        return s;
+    }
+    
+//Lista de las sillas disponibles de la central economicas    
+    public ArrayList<String> Central()
+    {
+       Silla silla = null;
+       ArrayList<String> s=new ArrayList<>();
+       for( int i = 0; i < SILLAS_ECONOMICAS; i++ ){
+           silla = sillasEconomicas[ i ];
+           if( ! ( silla.sillaAsignada( ) ) && silla.getUbicacion( ) == 2  )
+            {
+               int a=silla.getNumero();
+               String b=a+"";
+               s.add(b);
+           }
+       
+       }              
+        return s;
+    }
      
      
-     
+      
+            
      
      
      //busca el cliente por cedula de los que han hechos reservas

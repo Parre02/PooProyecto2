@@ -30,7 +30,7 @@ public class Silla {
     
     private int ubicacion;
     
-    private boolean dañada;
+    private boolean danada=false;
     
     private Cliente clientes;
     
@@ -102,11 +102,11 @@ public class Silla {
     }
 
     public boolean isDanada() {
-        return dañada;
+        return danada;
     }
 
     public void setDanada(boolean dañada) {
-        this.dañada = dañada;
+        this.danada = dañada;
     }
     
     
