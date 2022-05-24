@@ -1,6 +1,7 @@
 
 package Cinen;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,9 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ArrayList<Cliente> clientes= new ArrayList<>();
+        ArrayList<Trabajador> trabajadores = new ArrayList<>();
+
         Scanner entrada = new Scanner(System.in);
         int opcion = 0;
         System.out.print("\n\t.:Menu:.\t\n");
@@ -30,8 +34,8 @@ public class NewMain {
             System.out.print("\n\t.:Menu:.\t\n");
             System.out.print("1.Comprar boleteria \n");
             System.out.print("2.Editar la cartelera \n");
-            System.out.print("3. Buscar un registro en Cliente,Pelicula,Trabajador \n");
-            System.out.print("4. Eliminar un registro en Cliente,Pelicula,Trabajador \n");
+            System.out.print("3.Buscar un registro en Cliente,Pelicula,Trabajador \n");
+            System.out.print("4.Eliminar un registro en Cliente,Pelicula,Trabajador \n");
             System.out.print("5. Salir\n\n");
             System.out.print("Opcion: ");
             switch (opcion) {
@@ -39,8 +43,24 @@ public class NewMain {
                     System.out.println("Ingrese la cedula y el nombre del cliente \nCedula no mas de 10 digitos \nNombre seguido de espacio y un apellido");
                     int cedula = entrada.nextInt();
                     String nombre = entrada.next();
-                    Cliente cliente = new Cliente(cedula, nombre);
-                    cliente.setclientes(cliente);
+                    Cliente cliente = new Cliente(cedula,000,nombre,"Na",0);
+
+                    if (!cliente.loging(cliente, clientes)) {
+                        System.out.println("El cliente no esta registrado, se debe registrar para comprar boleteria");
+                        System.out.println("Ingrese el celular, \nCelular no mas de 10 digitos \nSexo M o F, edad minimo 16 para registro");
+                        int celular = entrada.nextInt();
+                        String sexo = entrada.next();
+                        int edad = entrada.nextInt();
+                        Cliente cliente1 = new Cliente(cedula,celular,nombre,sexo,edad);
+                        System.out.println("Se ha registrado satisfactoriamente al cliente \n Desea imprimir la cartelera? 1 si, 2 no,");
+
+                        
+                    } 
+                    else {
+                        
+                        
+                    }
+
 
 
 
@@ -83,5 +103,10 @@ public class NewMain {
         
         
     }
+
+
+
+        
     
 }
+

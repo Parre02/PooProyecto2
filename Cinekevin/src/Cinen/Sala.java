@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Sala {
     
     public final static int SILLAS_VIP = 8;
-    
+
     public final static int SILLAS_ECONOMICAS = 42;
     
     private Silla[] sillas_vip;

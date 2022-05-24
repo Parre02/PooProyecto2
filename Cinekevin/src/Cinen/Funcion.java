@@ -1,9 +1,9 @@
 package Cinen;
 
 public class Funcion {
-    protected boolean pantalla3D;
-    protected String hora;
-    protected Sala[] salas;
+    private boolean pantalla3D;
+    private String hora;
+    private Sala[] salas;
     
     
 }

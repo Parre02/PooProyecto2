@@ -1,11 +1,15 @@
 package Cinen;
 
+import java.util.ArrayList;
+
 public class Persona {
     private int cedula;
     private int celular;
     private String nombre;
     private String sexo;
     private int edad;
+
+    
 
     public Persona(int cedula, int celular, String nombre, String sexo, int edad) {
         this.cedula = cedula;
@@ -54,9 +58,5 @@ public class Persona {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-      
-     
-    
     
 }
-

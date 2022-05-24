@@ -10,32 +10,36 @@ import java.util.ArrayList;
  *
  * @author usuario
  */
-public class Cliente{
+public class Cliente extends Persona{
       
     private int cedula;
-    
     private String nombre;
-    
-    
-   
-    private ArrayList<Cliente> clientes= new ArrayList<>();
 
     
-    public Cliente(int cedula,String nombre)
-    {
+    public Cliente(int cedula,int celular,String nombre, String sexo, int edad)
+    {   super(cedula, celular, nombre, sexo, edad);
         this.cedula = cedula;
         this.nombre = nombre;
-        
-        
-               
     }
+    
     
 
     
-    public int getCedula( )
+    
+    
+    
+
+
+
+
+	public int getCedula( )
     {
         return cedula;
     }
+	
+	public void setCedula(int cedula) {
+		this.cedula = cedula;
+	}
 
 
     public String getNombre( )
@@ -43,12 +47,16 @@ public class Cliente{
         return nombre;
     }
 
-    public Cliente setclientes(Cliente cliente ){
-        clientes.add(cliente);
-        return cliente;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 
-    }
+
+
+	
+
 
 
     @Override
@@ -58,16 +66,28 @@ public class Cliente{
 
     }
 
+    public boolean loging(Cliente Cliente, ArrayList<Cliente> clientes)
+    {
+        boolean varConfirmar = false;
+        for (Cliente cli : clientes) {
+            if (cli.confirmarCliente(Cliente.getCedula())) {
+                varConfirmar = true;
+                break;
+            } 
+        }
+        return varConfirmar;          
+    }
 
 
    
-    public boolean confirmarCliente( Cliente confirmar )
-    {  
-        for (int i = 0; i < clientes.length; i++) {
+
+    public boolean confirmarCliente (int confirmar){
+        if (confirmar == this.cedula) {
+            return true;
             
         }
+        return false;
     }
-    
     public String reservar(int tipo, int ubicacion, Cliente cliente, Sala reserva){
         
         String tip="";
@@ -131,12 +151,10 @@ public class Cliente{
             return f.getCliente();
         else
             return null;
-    }*/ // Hacer un rediseño de este metodo debido que en la linea 108 Sala.reservas.get se esta ingresando a la clase no la instancia o objeto.
+    }*/ // Hacer un rediseÃ±o de este metodo debido que en la linea 108 Sala.reservas.get se esta ingresando a la clase no la instancia o objeto.
     
    
     
     
 }
                
-                        
-              
