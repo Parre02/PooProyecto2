@@ -22,6 +22,13 @@ public class Cliente extends Persona{
         this.nombre = nombre;
     }
     
+    public boolean confirmarCliente( Cliente confirmar )
+    {
+        if( cedula == confirmar.getCedula( ) )
+            return true;
+        else
+            return false;
+    }
     
 
     
@@ -88,20 +95,32 @@ public class Cliente extends Persona{
         }
         return false;
     }
-    public String reservar(int tipo, int ubicacion, Cliente cliente, Sala reserva){
+   
+    
+    //aqui hacemos la rserva del cliente 
+    public String reservar(int tipo, int ubicacion, int lugar, Cliente cliente, Sala reserva){
         
         String tip="";
         String tip2="";
         
-        Silla silla = null;
-        Silla a=reserva.asignarSilla(tipo, ubicacion, cliente);
-        if(a.getTipo()==1){
+        Silla silla=null;
+        
+        if (tipo==silla.SILLAS_ECONOMICAS){    //aqui asignamos que si la silla va ser vip o economica
+            
+            
+            tip="Silla_Economica";
+            
+            silla=reserva.asignarSilla(2, ubicacion, cliente);
+        }
+        if (tipo==silla.SILLAS_VIP){
+            silla=reserva.asignarSilla(1, 2, cliente);
             tip="Silla_Vip";
         }
-        else{
-            tip="Silla_Economica";
-        }
-        switch (a.getUbicacion()) {
+        
+        
+        silla.asignarAcliente(cliente);//es importante 
+                
+        switch (silla.getUbicacion()) {
             case 1:
                 tip2="Lateral_Derecho";
                 break;
@@ -112,16 +131,17 @@ public class Cliente extends Persona{
                 tip2="Lateral_Izquierdo";
                 break;
         }
-        return "Numero: "+a.getNumero()
+        return "Numero: "+silla.getNumero()
                 +"\nTipo: "+ tip
                 +"\nUbicacion: "+ tip2;
      }
     
+    //si el cliente pregunta por las funciones del dia
     public ArrayList<String> bucarFuncion(){
         return Cartelera.cartelera();
     }
     
-    
+    //si el cliente quiere pedir una devolucion 
     public String devolucionCliente(Cliente cliente,Sala sala){
               
         Silla silla = null;
@@ -130,10 +150,67 @@ public class Cliente extends Persona{
         return "Devolucion exitosa";        
     }
     
-    /*public String comprarEntrada(Cliente cliente,Sala sala){
+    
+    //el cliente compra una entrada con descuento y se hace la reserva 
+    public String comprarEntrada(Cliente cliente,Sala sala, int tipo, int ubicacion, int lugar){
+        
+        Silla silla=null;
+        
+        if (tipo==silla.SILLAS_ECONOMICAS){    //aqui asignamos que si la silla va ser vip o economica
+            silla=sala.buscarSillaEconomicaLibre(ubicacion);
+        }
+        if (tipo==silla.SILLAS_VIP){
+            silla=sala.buscarSillaVipLibre();
+        }
+        
+        
+        silla.asignarAcliente(cliente);//es importante 
+        
+        double preciovip=25.000;
+        double precioEco=15.000;        
         String a="";
-        if(this.buscarCliente(cliente.getCedula())!=null){          
-    }*/
+        boolean descuento=false; 
+        
+        
+        if(sala.buscarCliente(cliente).getCliente()==cliente){//---->vemos si el cliente ha sido cliente antiguo y si es asi le aplica el descuento del 10%
+            descuento=true;
+        }
+        
+        
+        
+        if ((descuento) && silla.getTipo()== silla.SILLAS_VIP){ //--------> si el cliente ha elegido la opcion de vip  
+                                                                        
+           preciovip=preciovip-(preciovip*0.10);//----->le aplica el descuento
+           a=preciovip+"";
+           this.reservar(silla.SILLAS_VIP, cliente.getCedula(), lugar, cliente, sala);//----le guradamos la reserva
+        
+           
+        }else if((descuento) && silla.getTipo()== silla.SILLAS_ECONOMICAS){//lo mismo pero con el cliente economico 
+           
+            precioEco=precioEco-(precioEco*0.05);//descuento de 5%
+           a=precioEco+"";
+           this.reservar(silla.SILLAS_VIP, cliente.getCedula(), lugar, cliente, sala);
+        }
+        
+        //ahora vemos los que no han sido clientes
+        
+        if (!(descuento ) && silla.getTipo()== silla.SILLAS_VIP){
+            
+           
+           a=preciovip+"";
+           
+           this.reservar(silla.SILLAS_ECONOMICAS, cliente.getCedula(), lugar, cliente, sala);
+        }else if(!(descuento) && silla.getTipo()== silla.SILLAS_ECONOMICAS){
+           
+            
+           a=precioEco+"";
+           this.reservar(silla.SILLAS_ECONOMICAS, cliente.getCedula(), lugar, cliente, sala);
+        }
+            
+                
+         return a;
+        
+    }
     
     /*public Cliente buscarCliente(int cedula)
     {
