@@ -15,6 +15,8 @@ public class Sala {
     
     private Silla[] sillasEconomicas;
     
+    public static Administrador admin=new Administrador("", 1,2);
+    
     
     
     
@@ -82,62 +84,72 @@ public class Sala {
             numeroSilla = lugares.nextInt();
             silla = buscarSillaVipLibre(numeroSilla);
             reservas.add(silla);
+            this.descuento(cliente, this, 1);
         }
-        else if(tipo == Silla.SILLAS_ECONOMICAS )
+        else if(tipo == Silla.SILLAS_ECONOMICAS)
         {   
             Scanner lugares = new Scanner(System.in);
             int numeroSilla = 0;
-            System.out.print(this.obtenerSillasVip()+"\n\"Escoge una silla: ");
-            numeroSilla = lugares.nextInt();
-            silla = buscarSillaEconomicaLibre( ubicacion, numeroSilla);
-            reservas.add(silla);
-        }
+            
+            if (ubicacion==1) {
+                System.out.print(this.lateral_D()+"\n\"Escoge una silla: ");
+                numeroSilla = lugares.nextInt();
+                silla = this.buscarSillaEconomicaLibre(1,numeroSilla);
+                reservas.add(silla);
+                this.descuento(cliente, this, 2);
+                }
+            else if(ubicacion==2) {
+                System.out.print(this.Central()+"\n\"Escoge una silla: ");
+                numeroSilla = lugares.nextInt();
+                silla = this.buscarSillaEconomicaLibre(2,numeroSilla);
+                reservas.add(silla);
+                this.descuento(cliente, this, 2);
+                }
+            else {
+                System.out.print(this.lateral_I()+"\n\"Escoge una silla: ");
+                numeroSilla = lugares.nextInt();
+                silla = this.buscarSillaEconomicaLibre(3,numeroSilla);
+                reservas.add(silla);
+                this.descuento(cliente, this, 2);
+                }
+            }
+            
+            
+          
         if( silla != null )
         {
-            silla.asignarAcliente( cliente );
+            silla.asignarAcliente(cliente );
         }
         return silla;
     }
     
     
-    //lo mismo de arriba pero esta vez podemos escoger el numero de la silla que es el lugar
-    public Silla asignarSilla( int tipo, int ubicacion, Cliente cliente, int lugar)
+    //buscamos los clientes antiguos que seran almacenados en la reserva
+    public Cliente buscarClienteEnLAreserva( Cliente cliente)
     {
         
         Silla silla = null;
-        if( tipo == Silla.SILLAS_VIP )
-        {
-            this.obtenerSillasVip();
-            for(int i =0; i < reservas.size(); i++){
+        for(int i =0; i < reservas.size(); i++){
                  Silla f = reservas.get(i);
                  
-                 if(f.getNumero()!=lugar){
-                     silla= this.buscarSillaVipLibre(lugar);
-                     reservas.add(silla);
-                     
+                 if(f.getCliente()!=cliente){
+                     silla= null;                   
+                  }else{
+                     silla=f;
                  }             
            }
+            if( silla != null )
+        {
+            return silla.getCliente();
             
         }
-        else if(tipo == Silla.SILLAS_ECONOMICAS )
-        {
-            this.obtenerSillasEconomicas();
-            for(int i =0; i < reservas.size(); i++){
-                 Silla f = reservas.get(i);
-                 
-                 if(f.getNumero()!=lugar && lugar<9){
-                     silla= this.buscarSillaEconomicaLibre(lugar);
-                     reservas.add(silla);
-                 }
-             }
-        }
-        
-        if( silla != null )
-        {
-            silla.asignarAcliente(cliente);
-        }
-        return silla;
+            else{
+                return null;
+            }
     }
+            
+        
+        
  
     
     
@@ -574,6 +586,68 @@ public class Sala {
             return f.getCliente();
         else
             return null;
+    }
+     
+     public void descuento(Cliente cliente,Sala sala, int tipo){
+        
+        Silla silla=null;
+        
+        if (tipo==silla.SILLAS_ECONOMICAS){    //aqui asignamos que si la silla va ser vip o economica
+            silla=sala.buscarSillaEconomicaLibre(tipo);
+        }
+        if (tipo==silla.SILLAS_VIP){
+            silla=sala.buscarSillaVipLibre();
+        }
+        
+        
+        silla.asignarAcliente(cliente);//es importante 
+        
+        double preciovip=25.000;
+        double precioEco=15.000;        
+        String a="";
+        boolean descuento=false; 
+        
+        
+        if(sala.buscarClienteEnLAreserva(cliente)!=null){               //---->vemos si el cliente ha sido cliente antiguo y si es asi le aplica el descuento del 10%
+            if (sala.buscarClienteEnLAreserva(cliente)==cliente){
+                descuento=true;
+            }
+        }
+        
+        
+        
+        if ((descuento) && silla.getTipo()== silla.SILLAS_VIP){ //--------> si el cliente ha elegido la opcion de vip  
+                                                                        
+           preciovip=preciovip-(preciovip*0.10);//----->le aplica el descuento
+           a=preciovip+"";
+           
+        
+           
+        }else if((descuento) && silla.getTipo()== silla.SILLAS_ECONOMICAS){//lo mismo pero con el cliente economico 
+           
+            precioEco=precioEco-(precioEco*0.05);//descuento de 5%
+           a=precioEco+"";
+           
+        }
+        
+        //ahora vemos los que no han sido clientes
+        
+        if (!(descuento ) && silla.getTipo()== silla.SILLAS_VIP){
+            
+           
+           a=preciovip+"";
+           
+          
+        }else if(!(descuento) && silla.getTipo()== silla.SILLAS_ECONOMICAS){
+           
+            
+           a=precioEco+"";
+           
+        }
+            
+                
+         System.out.println("Valor de la silla: " +a);
+        
     }
      
     
