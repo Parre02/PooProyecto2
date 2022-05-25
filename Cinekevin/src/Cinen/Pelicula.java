@@ -28,7 +28,12 @@ public class Pelicula {
     }
         
         
-
+   public String toString(){
+        String varImpr = "Se ha agregado satisfactoriamente una pelicula" ;
+        return varImpr;
+   }
+   
+   
 	
     public String getNombre() {
 		return nombre;
