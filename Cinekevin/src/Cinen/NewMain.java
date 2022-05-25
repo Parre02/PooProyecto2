@@ -53,7 +53,7 @@ public class NewMain {
                         int edad = entrada.nextInt();
                         Cliente cliente1 = new Cliente(cedula,celular,nombre,sexo,edad);
                         System.out.println("Se ha registrado satisfactoriamente al cliente \n Desea imprimir la cartelera? 1 si, 2 no,");
-
+                        
                         
                     } 
                     else {

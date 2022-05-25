@@ -43,7 +43,7 @@ public class Sala {
         sillas_vip[ 5 ] = new Silla( 6, Silla.SILLAS_VIP, Silla.CENTRAL );
         sillas_vip[ 6 ] = new Silla( 7, Silla.SILLAS_VIP, Silla.CENTRAL );
         sillas_vip[ 7 ] = new Silla( 8, Silla.SILLAS_VIP, Silla.CENTRAL );
-
+                                             
         
         //luego vamos a distribuir la ubicacion de las sillas
         for( int numSilla = 1 + SILLAS_VIP, j = 1; j <= SILLAS_ECONOMICAS; numSilla++, j++ )
@@ -69,7 +69,7 @@ public class Sala {
     }
     
     
-    //asiganmos la silla el tipo, la ubicacion y el cliente
+    //Asiganmos la silla el tipo, la ubicacion y el cliente
     public Silla asignarSilla( int tipo, int ubicacion, Cliente cliente)
     {
         
