@@ -16,6 +16,8 @@ public class Sala {
     private ArrayList<Trabajador> trabajadores;
 
 	private int numero;
+
+	private int basura;
     
 
     
