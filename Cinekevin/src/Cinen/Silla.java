@@ -6,6 +6,8 @@ package Cinen;
 
 import java.util.ArrayList;
 
+import javax.print.DocFlavor.STRING;
+
 /**
  *
  * @author usuario
@@ -13,42 +15,31 @@ import java.util.ArrayList;
 public class Silla {
     
     //Hacer ediciones y tocar 
-    public final static int SILLAS_VIP = 1;
-   
-    public final static int SILLAS_ECONOMICAS= 2;
-    
-    public final static int LATERAL_DERECHO = 1;
-    
-    public final static int CENTRAL = 2;
-    
-    public final static int LATERAL_IZQUIERDO = 3;
 
     
     private int numero;
     
-    private int tipo;
+    private String tipo;
     
-    private int ubicacion;
+    private String ubicacion;
     
     private boolean danada=false;
     
     private Cliente clientes;
-    
-    private ArrayList<Cliente> listaClientes= new ArrayList<>(); ;
 
     
-    public Silla( int numero, int tipo, int ubicacion )
+    public Silla( int numero, String tipo, String ubicacion )
     {
         this.numero =numero;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
-        clientes = null;
+        this.clientes = null;
     }
 
     
-    public void asignarAcliente( Cliente p )
+    public void asignarAcliente( Cliente cliente)
     {
-        clientes = p;
+        this.clientes = cliente;
     }
 
     
@@ -84,13 +75,13 @@ public class Silla {
     }
 
     
-    public int getTipo( )
+    public String getTipo( )
     {
         return tipo;
     }
 
     
-    public int getUbicacion( )
+    public String getUbicacion( )
     {
         return ubicacion;
     }

@@ -2,6 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+
 package Cinen;
 
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
  *
  * @author usuario
  */
+
+/*
 public class Administrador extends Trabajador {
     
     private int Salario;
@@ -22,7 +26,7 @@ public class Administrador extends Trabajador {
     
     
     public Administrador(String nombre, int id, int edad){
-        super( nombre,  id,  "administrador",  edad, true);
+        super( nombre,  id,  "Administrador",  edad, true);
         this.nombre=nombre;
         this.edad=edad;
         this.Salario=1500000;
@@ -120,4 +124,4 @@ public class Administrador extends Trabajador {
     
     
     
-}
+}*/

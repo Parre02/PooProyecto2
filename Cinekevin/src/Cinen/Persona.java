@@ -1,17 +1,16 @@
 package Cinen;
 
-import java.util.ArrayList;
 
 public class Persona {
-    private int cedula;
-    private int celular;
+    private long cedula;
+    private long celular;
     private String nombre;
     private String sexo;
     private int edad;
 
     
 
-    public Persona(int cedula, int celular, String nombre, String sexo, int edad) {
+    public Persona(long cedula,long celular, String nombre, String sexo, int edad) {
         this.cedula = cedula;
         this.celular = celular;
         this.nombre = nombre;
@@ -19,19 +18,19 @@ public class Persona {
         this.edad = edad;
     }
 
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 

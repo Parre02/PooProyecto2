@@ -11,15 +11,18 @@ import java.util.ArrayList;
  * @author usuario
  */
 public class Cliente extends Persona{
-      
-    private int cedula;
+    private long cedula;
     private String nombre;
+    private int puntos;
+     
+    
 
     
-    public Cliente(int cedula,int celular,String nombre, String sexo, int edad)
+    public Cliente(long cedula,long celular,String nombre, String sexo, int edad,int puntos)
     {   super(cedula, celular, nombre, sexo, edad);
         this.cedula = cedula;
         this.nombre = nombre;
+        this.puntos = puntos;
     }
     
     public boolean confirmarCliente( Cliente confirmar )
@@ -31,15 +34,7 @@ public class Cliente extends Persona{
     }
     
 
-    
-    
-    
-    
-
-
-
-
-	public int getCedula( )
+	public long getCedula( )
     {
         return cedula;
     }
@@ -85,34 +80,25 @@ public class Cliente extends Persona{
 
    
 
-    public boolean confirmarCliente (int confirmar){
+    public boolean confirmarCliente (long confirmar){
         if (confirmar == this.cedula) {
             return true;
             
         }
         return false;
-    }
+    }}
+
    
    
     
     //si el cliente pregunta por las funciones del dia
-    public ArrayList<String> bucarFuncion(){
-        return Cartelera.cartelera();
-    }
+
     
     
     
-    //si el cliente quiere pedir una devolucion 
-    public String devolucionCliente(Cliente cliente,Sala sala){
-              
-        Silla silla = null;
-        Silla a=sala.buscarCliente(cliente);
-        a.desasignarSilla();
-        return "Devolucion exitosa";        
-    }
     
 
-    //el cliente compra una entrada con descuento y se hace la reserva 
+  /*  //el cliente compra una entrada con descuento y se hace la reserva 
     public String comprarEntrada(Cliente cliente,Sala sala, int tipo, int ubicacion){
         
        
@@ -125,33 +111,6 @@ public class Cliente extends Persona{
         }else if(2== tipo){//lo mismo pero con el cliente economico 
            
              Sala.admin.reservar(2, cliente.getCedula(), cliente, sala);
-        }
+        }*/
                         
          
-       return "compra exitosa";
-        
-    }
-    
-    /*public Cliente buscarCliente(int cedula)
-    {
-        boolean encontrado = false;
-        Silla f=null;
-        for(int i =0; i < Sala.reservas.size(); i++ )
-        {
-            f = Sala.reservas.get(i);
-            if(f.getCliente().getCedula()==cedula )
-            {
-                encontrado = true;
-            }
-        }
-        if( encontrado )
-            return f.getCliente();
-        else
-            return null;
-    }*/ // Hacer un rediseÃ±o de este metodo debido que en la linea 108 Sala.reservas.get se esta ingresando a la clase no la instancia o objeto.
-    
-   
-    
-    
-}
-               

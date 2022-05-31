@@ -14,7 +14,7 @@ public class Pelicula {
 	private String genero;
 	private String pais;
 	private String calificacion;
-        protected static ArrayList<Pelicula> peliculas= new ArrayList<>();
+
 
     public Pelicula(String nombre, String director, int ano, int duracion, String genero, String pais, String calificacion) {
         this.nombre = nombre;
@@ -24,7 +24,6 @@ public class Pelicula {
         this.genero = genero;
         this.pais = pais;
         this.calificacion = calificacion;
-        Pelicula.peliculas.add(this);
     }
         
         

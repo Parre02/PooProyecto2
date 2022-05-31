@@ -15,98 +15,128 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ArrayList<Cliente> clientes= new ArrayList<>();
-        ArrayList<Trabajador> trabajadores = new ArrayList<>();
+        ArrayList<Cliente> clientes= new ArrayList<Cliente>();
+        ArrayList<Trabajador> trabajadores = new ArrayList<Trabajador>();
+        ArrayList<Sala> salas = new ArrayList<Sala>();
+        Cartelera cartelera = new Cartelera(null);
+        Funcionalidades funcionalidades =new Funcionalidades();
+        
 
-        Scanner entrada = new Scanner(System.in);
-        int opcion = 0;
-        System.out.print("\n\t.:Menu:.\t\n");
-        System.out.print("1.Comprar boleteria \n");
-        System.out.print("2.Editar la cartelera\n");
-        System.out.print("3. Buscar un registro en Cliente,Pelicula,Trabajador \n");
-        System.out.print("4. Eliminar un registro en Cliente,Pelicula,Trabajador \n");
-        System.out.print("5. Salir\n\n");
-        System.out.print("Opcion: ");
+        try (Scanner entrada = new Scanner(System.in)) {
+            int opcion = 0;
+            int varloging;
 
-        opcion = entrada.nextInt();
+            System.out.println("Bienvenido al cine JKS, ingrese la contrasena para ingresar al menu: ");
+            varloging = entrada.nextInt();
+            if (varloging == 0000) {
+                opcion = 0;
+                    while (opcion != 8) {
+                        System.out.print("\n\t.:Menu:.\t\n");
+                        System.out.print("1.Comprar boleteria \n");
+                        System.out.print("2.Editar la cartelera, o imprimir cartelera\n");
+                        System.out.print("3.Buscar o eliminar registro en Cliente,Pelicula,Trabajador \n"); //Discutir
+                        System.out.print("4.Buscar una reserva \n");
+                        System.out.println("5.Inicializar Cine (Reservada para un unico uso)");
+                        System.out.println("6.Verificar integridad de las salas");
+                        System.out.println("7.Enviar a servicios a barrer una sala");
+                        System.out.print("8.Salir\n\n");
+                        System.out.print("Opcion: ");
 
-        while (opcion != 5) {
-            System.out.print("\n\t.:Menu:.\t\n");
-            System.out.print("1.Comprar boleteria \n");
-            System.out.print("2.Editar la cartelera \n");
-            System.out.print("3.Buscar un registro en Cliente,Pelicula,Trabajador \n");
-            System.out.print("4.Eliminar un registro en Cliente,Pelicula,Trabajador \n");
-            System.out.print("5. Salir\n\n");
-            System.out.print("Opcion: ");
-            switch (opcion) {
-                case 1:
-                    System.out.println("Ingrese la cedula y el nombre del cliente \nCedula no mas de 10 digitos \nNombre seguido de espacio y un apellido");
-                    int cedula = entrada.nextInt();
-                    String nombre = entrada.next();
-                    Cliente cliente = new Cliente(cedula,000,nombre,"Na",0);
 
-                    if (!cliente.loging(cliente, clientes)) {
-                        System.out.println("El cliente no esta registrado, se debe registrar para comprar boleteria");
-                        System.out.println("Ingrese el celular, \nCelular no mas de 10 digitos \nSexo M o F, edad minimo 16 para registro");
-                        int celular = entrada.nextInt();
-                        String sexo = entrada.next();
-                        int edad = entrada.nextInt();
-                        Cliente cliente1 = new Cliente(cedula,celular,nombre,sexo,edad);
-                        System.out.println("Se ha registrado satisfactoriamente al cliente \n Desea imprimir la cartelera? 1 si, 2 no,");
-                        
-                        
-                    } 
-                    else {
-                        
-                        
+                        opcion = entrada.nextInt();
+                        switch (opcion) {
+                            case 1:
+                                System.out.println("Ingrese la cedula del cliente \nCedula no mas de 9 digitos");
+                                int cedula = entrada.nextInt();
+
+                                System.out.println("Ingrese el nombre del cliente \nNombre seguido de espacio y un apellido");
+                                String nombre = entrada.nextLine();
+                                entrada.nextLine();
+
+                                Cliente cliente = new Cliente(cedula,000,nombre,"Na",0,0);
+
+                                if (!cliente.loging(cliente, clientes)) {
+                                    System.out.println("El cliente no esta registrado, se debe registrar para comprar boleteria");
+
+                                    System.out.println("Ingrese el celular, \nCelular no mas de 9 digitos, Para agregar el cliente, ingrese el celular");
+                                    int celular = entrada.nextInt();
+
+                                    System.out.println("Sexo M o F");
+                                    String sexo = entrada.next();
+
+                                    System.out.println("Ingrese la edad, para agregar el cliente,edad minimo 16 para registro");
+                                    int edad = entrada.nextInt();
+
+                                    Cliente cliente1 = new Cliente(cedula,celular,nombre,sexo,edad,0);
+                                    clientes.add(cliente1);
+
+                                    System.out.println("Se ha registrado satisfactoriamente al cliente \n Desea imprimir la cartelera? 1 si, 2 no");
+                                    int varOpcionPrint = entrada.nextInt();
+                                    if(varOpcionPrint == 1){
+
+                                    }
+                                    else{
+                                        System.out.println("Que pelicula desea ver");
+                                    }
+                                    
+                                    
+                                } 
+                                else {
+                                    System.out.println("El cliente esta registrado");
+                                    System.out.println("Desea imprimir la cartelera? 1 si, 2 no");
+                                    int varOpcionPrint = entrada.nextInt();
+                                    if(varOpcionPrint == 1){
+
+                                    }
+                                    else{
+                                        System.out.println("Que pelicula desea ver");
+                                    }                                                                  
+                                }
+                                break;
+
+                            case 2:
+                                System.out.println("Desea editar o imprimir cartelera? \n 1 para editar, 2 para imprimir la cartelera");
+                                int varOpcion = entrada.nextInt();
+                                if (varOpcion == 1) {
+                                    System.out.println("Que pelicula desea editar? \nPara editar ingrese el nombre de la pelicula");
+                                String varEntrada = entrada.next();
+                                    
+                                } else {
+                                    
+                                }
+                                
+
+
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                salas = funcionalidades.inicializarSalas();
+                                System.out.println("Se ha iniciado existosamente las salas");
+                                cartelera = funcionalidades.inicializarCartelera();
+                                trabajadores = funcionalidades.inicializarTrabajdores(salas);
+                                System.out.println("Se ha inicializado correctamente el cine");
+                                break;
+
+                            case 6:
+                                break;
+                            
+                            case 7:
+                                break;
+
+                            case 8:
+                                break;
+                            default:
+                                System.out.println("Opción errada\n");
+                        }
                     }
-
-
-
-
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                default:
-                    System.out.println("Opción errada\n");
+            }
+            else {
+                System.out.println("Clave incorrecta hasta luego");
             }
         }
-    
-
-
-        
-        
-        
-         Sala s=new Sala();
-        Sala s1=new Sala();
-        Pelicula op=new Pelicula("nombre", "String director", 2023, 2, "String genero", "String pais", "String calificacion");
-        Pelicula op2=new Pelicula("nombre", "String director", 2032, 2, "String genero", "String pais", "String calificacion");
-        Cartelera cc=new Cartelera();
-        
-        Cliente cl=new Cliente(1, 2,"a", "b", 3 );
-        Cliente c2=new Cliente(2, 8,"k", "c", 5 );
-       
-        
-        
-        
-        
-        
-        System.out.println(Sala.admin.estadisticas(s1));
-        System.out.println(cl.comprarEntrada(cl, s1, 1, 2));
-        
-        
-        
-        
-        
     }
-
-
-
-        
-    
 }
 
