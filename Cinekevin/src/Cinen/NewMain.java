@@ -18,7 +18,7 @@ public class NewMain {
         ArrayList<Cliente> clientes= new ArrayList<Cliente>();
         ArrayList<Trabajador> trabajadores = new ArrayList<Trabajador>();
         ArrayList<Sala> salas = new ArrayList<Sala>();
-        Cartelera cartelera = new Cartelera(null);
+        Cartelera cartelera = new Cartelera(null );
         Funcionalidades funcionalidades =new Funcionalidades();
         
 
@@ -34,7 +34,7 @@ public class NewMain {
                         System.out.print("\n\t.:Menu:.\t\n");
                         System.out.print("1.Comprar boleteria \n");
                         System.out.print("2.Editar la cartelera, o imprimir cartelera\n");
-                        System.out.print("3.Buscar o eliminar registro en Cliente,Pelicula,Trabajador \n"); //Discutir
+                        System.out.print("3.Buscar o eliminar registro en Trabajador \n"); //Discutir agregar
                         System.out.print("4.Buscar una reserva \n");
                         System.out.println("5.Inicializar Cine (Reservada para un unico uso)");
                         System.out.println("6.Verificar integridad de las salas");
@@ -70,9 +70,13 @@ public class NewMain {
                                     Cliente cliente1 = new Cliente(cedula,celular,nombre,sexo,edad,0);
                                     clientes.add(cliente1);
 
-                                    System.out.println("Se ha registrado satisfactoriamente al cliente \n Desea imprimir la cartelera? 1 si, 2 no");
+                                    System.out.println("Se ha registrado satisfactoriamente al cliente \nDesea imprimir la cartelera? 1 si, 2 no");
                                     int varOpcionPrint = entrada.nextInt();
                                     if(varOpcionPrint == 1){
+                                        Cartelera.imprimirCartelera(cartelera);
+                                        System.out.println(" ");
+                                        System.out.println("Que pelicula desea ver? ");
+
 
                                     }
                                     else{
@@ -95,14 +99,27 @@ public class NewMain {
                                 break;
 
                             case 2:
-                                System.out.println("Desea editar o imprimir cartelera? \n 1 para editar, 2 para imprimir la cartelera");
+                                System.out.println("Desea cambiar o imprimir cartelera? \n1 para cambiar, 2 para imprimir la cartelera");
                                 int varOpcion = entrada.nextInt();
                                 if (varOpcion == 1) {
-                                    System.out.println("Que pelicula desea editar? \nPara editar ingrese el nombre de la pelicula");
-                                String varEntrada = entrada.next();
+                                    boolean varVerificarExistencia = false;
+                                    System.out.println("Que pelicula desea cambiar? \nPara cambiar ingrese el nombre de la pelicula (Todo miniscula) ");
+                                    entrada.nextLine();
+                                    String varEntrada = entrada.nextLine();
+                                    varVerificarExistencia = cartelera.confirmarPelicula(cartelera, varEntrada);
+                                    if (varVerificarExistencia == true) {
+                                        System.out.println("La pelicula ya existe");
+                                        
+                                    } else if(varVerificarExistencia == false) {
+                                        System.out.println("La pelicula no esta");
+                                        System.out.println("Ingrese la pelicula que sea cambiar");
+
+                                    }
+
                                     
                                 } else {
-                                    
+                                    System.out.println(" ");
+                                    Cartelera.imprimirCartelera(cartelera);
                                 }
                                 
 
@@ -113,14 +130,16 @@ public class NewMain {
                             case 4:
                                 break;
                             case 5:
-                                salas = funcionalidades.inicializarSalas();
-                                System.out.println("Se ha iniciado existosamente las salas");
                                 cartelera = funcionalidades.inicializarCartelera();
-                                trabajadores = funcionalidades.inicializarTrabajdores(salas);
+                                salas = funcionalidades.inicializarSalas(cartelera);
+                                System.out.println("Se ha iniciado existosamente las salas");
+                                trabajadores = funcionalidades.inicializarTrabajdores();
+                                salas = funcionalidades.agregarTrabajadores(salas,trabajadores);
                                 System.out.println("Se ha inicializado correctamente el cine");
                                 break;
 
                             case 6:
+                                
                                 break;
                             
                             case 7:

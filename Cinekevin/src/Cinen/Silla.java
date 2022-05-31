@@ -6,7 +6,6 @@ package Cinen;
 
 import java.util.ArrayList;
 
-import javax.print.DocFlavor.STRING;
 
 /**
  *

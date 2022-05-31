@@ -3,7 +3,7 @@ package Cinen;
 import java.util.ArrayList;
 
 public class Funcionalidades {
-    public ArrayList<Sala>inicializarSalas(){
+    public ArrayList<Sala>inicializarSalas(Cartelera cartelera){
         int numeroSillas;
         numeroSillas = 240;
 
@@ -37,16 +37,16 @@ public class Funcionalidades {
 
         int varNumeroSalas;
         varNumeroSalas = 10;
-        Pelicula peli = null;
-        
+        ArrayList<Pelicula> varPelis = new ArrayList<Pelicula>();
+        varPelis = cartelera.getPelis();
         for (int index = 0; index < varNumeroSalas; index++) {
 
             if(index>0 && index<5){
-                Sala sala = new Sala("3D", sillas, peli,trabajadores,index);
+                Sala sala = new Sala("3D", sillas, varPelis.get(index),trabajadores,index);
                 salas.add(sala);
             }
             else{
-                Sala sala = new Sala("2D", sillas, peli,trabajadores,index);
+                Sala sala = new Sala("2D", sillas, varPelis.get(index),trabajadores,index);
                 salas.add(sala);
             }
         }
@@ -72,7 +72,7 @@ public class Funcionalidades {
     }
 
 
-    public ArrayList<Trabajador> inicializarTrabajdores(ArrayList<Sala> salas){
+    public ArrayList<Trabajador> inicializarTrabajdores(){
         ArrayList<Trabajador> trabajadores = new ArrayList<>();
         Trabajador trabajador1 = new Trabajador(100053321, 310402011, "Jaime Lozano", "M", 34, "Administrador", true);
         Trabajador trabajador2 = new Trabajador(101012342, 310401233, "Kevin Duran", "M", 36, "Empleado de planta", false);
@@ -93,32 +93,29 @@ public class Funcionalidades {
 
         trabajadores.add(trabajador1);trabajadores.add(trabajador2);trabajadores.add(trabajador3);trabajadores.add(trabajador4);trabajadores.add(trabajador5);trabajadores.add(trabajador6);
         trabajadores.add(trabajador7);trabajadores.add(trabajador8);trabajadores.add(trabajador9);trabajadores.add(trabajador10);trabajadores.add(trabajador11);trabajadores.add(trabajador12);trabajadores.add(trabajador13);
-        
-        ArrayList<Trabajador> varTrabajadoresAsignar = new ArrayList<Trabajador>();
-        varTrabajadoresAsignar.add(trabajador2);varTrabajadoresAsignar.add(trabajador3);varTrabajadoresAsignar.add(trabajador4);varTrabajadoresAsignar.add(trabajador5);varTrabajadoresAsignar.add(trabajador9);
-        varTrabajadoresAsignar.add(trabajador7);varTrabajadoresAsignar.add(trabajador8);varTrabajadoresAsignar.add(trabajador11);varTrabajadoresAsignar.add(trabajador10);varTrabajadoresAsignar.add(trabajador12);
-
-
-        
-     
-
-        int i = 0;
-        
-        ArrayList<Trabajador> varTrabajadores = new ArrayList<Trabajador>(); //Corregir
-        for (Sala sala: salas) {
-            sala.getTrabajadores().add(varTrabajadoresAsignar.get(i));
-            varTrabajadores.clear();;
-            i++;
-
-
-
-            
-        }
-
-
         return trabajadores;
     }
     
+    public ArrayList<Sala> agregarTrabajadores(ArrayList<Sala> salas, ArrayList<Trabajador> trabajadores){
+        int i = 0;
+        ArrayList<Trabajador> varTrabajadoresAsignar = new ArrayList<Trabajador>();
+        varTrabajadoresAsignar = trabajadores;
+        varTrabajadoresAsignar.remove(0);
+        varTrabajadoresAsignar.remove(4);
+        varTrabajadoresAsignar.remove(10);
+
+        
+        ArrayList<Trabajador> varTrabajadores = new ArrayList<Trabajador>(); //Corregir
+        for (Sala sala: salas) {;
+            sala.getTrabajadores().add(varTrabajadoresAsignar.get(i));
+            varTrabajadores.clear();;
+            i++;
+        }
+
+        return salas;
+
+
+    }
 
     
 }

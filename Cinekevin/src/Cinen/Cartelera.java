@@ -13,34 +13,59 @@ public class Cartelera {
     return pelis;
   }
 
+
+
   public void cambiarPelicula(String nombre) {
     ArrayList<Pelicula> varCartelera;
     varCartelera = this.getPelis();}
 
 
-  /*
+
   public static ArrayList<String> imprimirCartelera(Cartelera Cart){
     ArrayList<String> pelis= new ArrayList<>();
     ArrayList<Pelicula> peliculas = new ArrayList<>();
     peliculas = Cart.getPelis();
-    for(int i=0; i< Pelicula.peliculas.size();i++
-        Pelicula p = Pelicula.peliculas.get(i);
+    for(int i=0; i< peliculas.size();i++){
+        Pelicula p = peliculas.get(i);
         
-        String a="nombre: "+ p.getNombre()
-   +"\ndirector: "+ p.getDirector()
-     +"\nano: "+p.getAno()
-                        +"\nduracion: "+p.getDuracion()
-                          +"\ngenero: "+p.getGenero()
-                            +"\npais: "+p.getPais()
+        String a="Nombre: "+ p.getNombre()
+   +"\nDirector: "+ p.getDirector()
+     +"\nAno: "+p.getAno()
+                        +"\nDuracion: "+p.getDuracion()
+                          +"\nGenero: "+p.getGenero()
+                            +"\nPais: "+p.getPais()
                              +"\n------------------------" + 
                                "\n";
-        pelis.add(a);
-        
-        
-                               
-        
+        pelis.add(a);            
     }
-    return pelis;*/
+    for (int index = 0; index <pelis.size(); index++) {
+      System.out.println(pelis.get(index));
+    }
+    return pelis;}
+
+  public boolean confirmarPelicula(Cartelera cart, String busqueda){
+    boolean varConfirmarPelicula = false;
+    ArrayList<Pelicula> varPeliculas = new ArrayList<>();
+    varPeliculas = cart.getPelis();
+    busqueda= busqueda.toLowerCase();
+
+
+      
+    for (int i = 0; i < varPeliculas.size(); i++) {
+      String varNombre = varPeliculas.get(i).getNombre().toLowerCase();
+    
+      if (varNombre == busqueda) {
+        varConfirmarPelicula = true;
+        break;
+      } else {
+       varConfirmarPelicula = false;
+        
+        
+      }
+      
+    }
+    return varConfirmarPelicula;
+  }
     
   
   
