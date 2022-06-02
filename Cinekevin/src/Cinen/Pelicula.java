@@ -14,10 +14,11 @@ public class Pelicula {
 	private String genero;
 	private String pais;
 	private String calificacion;
+	private int precio;
 	//Falta por agregar el precio de la pelicula para poder acceder a la pelicula
 
 
-    public Pelicula(String nombre, String director, int ano, int duracion, String genero, String pais, String calificacion) {
+    public Pelicula(String nombre, String director, int ano, int duracion, String genero, String pais, String calificacion, int precio) {
         this.nombre = nombre;
         this.director = director;
         this.ano = ano;
@@ -25,9 +26,10 @@ public class Pelicula {
         this.genero = genero;
         this.pais = pais;
         this.calificacion = calificacion;
+		this.precio = precio;
     }
         
-        
+	@Override
    public String toString(){
         String varImpr = "Se ha agregado satisfactoriamente una pelicula" ;
         return varImpr;
@@ -78,6 +80,12 @@ public class Pelicula {
 		this.calificacion = calificacion;
 	}
 	
+	public int getPrecio() {
+		return precio;
+	}
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
 	
 	
 

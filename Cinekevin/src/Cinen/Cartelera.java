@@ -34,6 +34,7 @@ public class Cartelera {
                         +"\nDuracion: "+p.getDuracion()
                           +"\nGenero: "+p.getGenero()
                             +"\nPais: "+p.getPais()
+                              +"\nPrecio: "+p.getPrecio()
                              +"\n------------------------" + 
                                "\n";
         pelis.add(a);            
