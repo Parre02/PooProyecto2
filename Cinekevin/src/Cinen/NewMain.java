@@ -15,7 +15,7 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ArrayList<Cliente> clientes= new ArrayList<Cliente>();
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         ArrayList<Trabajador> trabajadores = new ArrayList<Trabajador>();
         ArrayList<Sala> salas = new ArrayList<Sala>();
         Cartelera cartelera = new Cartelera(null );
@@ -30,16 +30,17 @@ public class NewMain {
             varloging = entrada.nextInt();
             if (varloging == 0000) {
                 opcion = 0;
-                    while (opcion != 8) {
+                    while (opcion != 9) {
                         System.out.print("\n\t.:Menu:.\t\n");
                         System.out.print("1.Comprar boleteria \n");
                         System.out.print("2.Editar la cartelera, o imprimir cartelera\n");
-                        System.out.print("3.Buscar o eliminar registro en Trabajador \n"); //Discutir agregar
+                        System.out.print("3.Buscar o eliminar registro de un Trabajador \n"); //Discutir agregar
                         System.out.print("4.Buscar una reserva \n");
                         System.out.println("5.Inicializar Cine (Reservada para un unico uso)");
                         System.out.println("6.Verificar integridad de las salas");
                         System.out.println("7.Enviar a servicios a barrer una sala");
-                        System.out.print("8.Salir\n\n");
+                        System.out.println("8.Hacer devolucion");
+                        System.out.print("9.Salir\n\n");
                         System.out.print("Opcion: ");
 
 
@@ -98,6 +99,7 @@ public class NewMain {
                                 }
                                 break;
 
+
                             case 2:
                                 System.out.println("Desea cambiar o imprimir cartelera? \n1 para cambiar, 2 para imprimir la cartelera");
                                 int varOpcion = entrada.nextInt();
@@ -125,10 +127,27 @@ public class NewMain {
 
 
                                 break;
+
+
+
                             case 3:
                                 break;
+
+
+
                             case 4:
+                                System.out.println("Ingresa la cedula para buscar los datos de la reserva del cliente (No mas de 9 digitos)");
+                                int varLocalizarClienteCedula = entrada.nextInt();                             
+                                Cliente varBuscquedaCliente = new Cliente(varLocalizarClienteCedula, 0, "NA", "NA", 0, 0);
+                                if (!varBuscquedaCliente.loging(varBuscquedaCliente , clientes)) {
+                                    System.out.println("El cliente no esta registrado");}
+                                else{
+                                    varBuscquedaCliente.localizacionCliente(salas, varLocalizarClienteCedula);
+                                }
                                 break;
+                            
+                                
+
                             case 5:
                                 cartelera = funcionalidades.inicializarCartelera();
                                 salas = funcionalidades.inicializarSalas(cartelera);
@@ -137,7 +156,6 @@ public class NewMain {
                                 salas = funcionalidades.agregarTrabajadores(salas,trabajadores);
                                 System.out.println("Se ha inicializado correctamente el cine");
                                 break;
-
                             case 6:
                                 
                                 break;
@@ -147,6 +165,12 @@ public class NewMain {
 
                             case 8:
                                 break;
+
+
+                            case 9:
+                                break;
+
+                                
                             default:
                                 System.out.println("Opción errada\n");
                         }

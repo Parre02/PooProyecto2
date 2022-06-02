@@ -14,6 +14,7 @@ public class Pelicula {
 	private String genero;
 	private String pais;
 	private String calificacion;
+	//Falta por agregar el precio de la pelicula para poder acceder a la pelicula
 
 
     public Pelicula(String nombre, String director, int ano, int duracion, String genero, String pais, String calificacion) {
