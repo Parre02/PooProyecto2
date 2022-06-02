@@ -4,7 +4,7 @@ public class Trabajador extends Persona {
     private String cargo;
     private boolean administrador;
 
-    public Trabajador(long cedula,long celular,String nombre, String sexo, int edad,String cargo, boolean administrador) {
+    public Trabajador(int cedula,int celular,String nombre, String sexo, int edad,String cargo, boolean administrador) {
 		super(cedula, celular, nombre, sexo, edad);
         this.cargo = cargo;
         this.administrador = administrador;

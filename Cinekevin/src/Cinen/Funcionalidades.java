@@ -10,22 +10,23 @@ public class Funcionalidades {
         ArrayList<Silla> sillas = new ArrayList<Silla>();
         ArrayList<Sala> salas = new ArrayList<Sala>();
         ArrayList<Trabajador> trabajadores = new ArrayList<Trabajador>();
-
+        Cliente varInicializacionCliente = new Cliente(100065534, 0, "NA", "NA", 0, 0);
+    
         for (int i = 0; i < numeroSillas; i++) {
             if (i>=0 && i<=80) {
-                Silla silla = new Silla(i, "Economica", "Lateral Izquierdo");
+                Silla silla = new Silla(i, "Economica", "Lateral Izquierdo",varInicializacionCliente);
                 sillas.add(silla);
 
                 
             } 
             else if (i>=80 && i<=160) {
-                Silla silla = new Silla(i, "Vip", "Central");
+                Silla silla = new Silla(i, "Vip", "Central",varInicializacionCliente);
                 sillas.add(silla);
 
                 
             }
             else if (i>=160 && i<=240) {
-                Silla silla = new Silla(i, "Economica", "Lateral derecho");
+                Silla silla = new Silla(i, "Economica", "Lateral derecho",varInicializacionCliente);
                 sillas.add(silla);
 
 

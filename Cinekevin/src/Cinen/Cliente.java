@@ -18,7 +18,7 @@ public class Cliente extends Persona{
     
 
     
-    public Cliente(long cedula,long celular,String nombre, String sexo, int edad,int puntos)
+    public Cliente(int cedula,int celular,String nombre, String sexo, int edad,int puntos)
     {   super(cedula, celular, nombre, sexo, edad);
         this.cedula = cedula;
         this.nombre = nombre;
@@ -33,15 +33,6 @@ public class Cliente extends Persona{
             return false;
     }
     
-
-	public long getCedula( )
-    {
-        return cedula;
-    }
-	
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
-	}
 
 
     public String getNombre( )
@@ -58,12 +49,6 @@ public class Cliente extends Persona{
 
 
 
-    @Override
-    public String toString(){
-        String varImpr = "Se ha agregado satisfactoriamente el cliente" ;
-        return varImpr;
-
-    }
 
     public boolean loging(Cliente Cliente, ArrayList<Cliente> clientes)
     {
@@ -88,7 +73,40 @@ public class Cliente extends Persona{
         return false;
     }
 
+    public int [] localizacionCliente(ArrayList<Sala> salas, int cliente ){
+        int [] localizacionCliente = new int [2];
+        int i = 0;
+        int varLocalizacion = -1;
+        int varComparadorCliente =0;
+        for (Sala sala: salas) {
+            for (int j = 0; j < sala.getSillas().size(); j++) {
+                varComparadorCliente = sala.getSillas().get(j).getCliente().getCedula();
+                if (cliente == varComparadorCliente) {
+                    varLocalizacion = j;
+                    localizacionCliente[0] = varLocalizacion;
+                    localizacionCliente[1] = i;
 
+                    break;
+
+                }
+                
+            }
+
+            if (varLocalizacion != -1){
+                System.out.println("El cliente esta localizado en la Sala: "+i+" y en la silla: " + i);
+                break;
+            }
+
+            else{
+                i++;
+            }
+
+            
+        }
+
+        return localizacionCliente;
+
+    }
 
     }
 

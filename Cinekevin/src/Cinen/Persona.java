@@ -2,15 +2,15 @@ package Cinen;
 
 
 public class Persona {
-    private long cedula;
-    private long celular;
+    private int cedula;
+    private int celular;
     private String nombre;
     private String sexo;
     private int edad;
 
     
 
-    public Persona(long cedula,long celular, String nombre, String sexo, int edad) {
+    public Persona(int cedula,int celular, String nombre, String sexo, int edad) {
         this.cedula = cedula;
         this.celular = celular;
         this.nombre = nombre;
@@ -18,19 +18,19 @@ public class Persona {
         this.edad = edad;
     }
 
-    public long getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
-    public void setCedula(long cedula) {
+    public void setCedula(int cedula) {
         this.cedula = cedula;
     }
 
-    public long getCelular() {
+    public int getCelular() {
         return celular;
     }
 
-    public void setCelular(long celular) {
+    public void setCelular(int celular) {
         this.celular = celular;
     }
 

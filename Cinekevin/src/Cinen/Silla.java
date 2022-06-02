@@ -27,12 +27,12 @@ public class Silla {
     private Cliente clientes;
 
     
-    public Silla( int numero, String tipo, String ubicacion )
+    public Silla( int numero, String tipo, String ubicacion, Cliente cliente )
     {
         this.numero =numero;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
-        this.clientes = null;
+        this.clientes = cliente;
     }
 
     
