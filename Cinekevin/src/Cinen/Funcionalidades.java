@@ -43,11 +43,11 @@ public class Funcionalidades {
         for (int index = 0; index < varNumeroSalas; index++) {
 
             if(index>0 && index<5){
-                Sala sala = new Sala("3D", sillas, varPelis.get(index),trabajadores,index);
+                Sala sala = new Sala("3D", sillas, varPelis.get(index),trabajadores,index,0);
                 salas.add(sala);
             }
             else{
-                Sala sala = new Sala("2D", sillas, varPelis.get(index),trabajadores,index);
+                Sala sala = new Sala("2D", sillas, varPelis.get(index),trabajadores,index,0);
                 salas.add(sala);
             }
         }
@@ -57,16 +57,16 @@ public class Funcionalidades {
 
     public Cartelera inicializarCartelera(){
         ArrayList<Pelicula> pelis = new ArrayList<>();
-        Pelicula peli1 = new Pelicula("La caida de la casa blanca", "Roland Emmerich", 2013, 131, "Accion", "Estados unidos", "+14");
-        Pelicula peli2 = new Pelicula("Ciudad de Dios", "Fernando Meirelles", 2002, 130, "Accion", "Brasil", "+18");
-        Pelicula peli3 = new Pelicula("Terminator","James Cameron", 1984, 108, "Ciencia ficcion","Estados unidos", "+16");
-        Pelicula peli4 = new Pelicula("Salvando al soldado Ryan", "Steven Spielberg", 1998, 169, "Belico","Estados Unidos", "+16");
-        Pelicula peli5 = new Pelicula("Matrix", "Hermanas Wachowski", 2001, 136, "Ciencia ficcion", "Estados unidos", "+16");
-        Pelicula peli6 = new Pelicula("Robots", "Chris Wedge", 2005, 84, "Animacion", "Estados unidos", "+4");
-        Pelicula peli7 = new Pelicula("Enemigo a las puertas", "Jean-Jacques Annaud", 2001, 131, "Accion", "Estados unidos", "+16");
-        Pelicula peli8 = new Pelicula("Interstellar  ", "Christopher Nolan", 2014, 169,"Ciencia ficcion","Estados undidos", "+13");
-        Pelicula peli9 = new Pelicula("The Godfather", "Francis Ford Coppola", 1972, 177, "Gangsters", "Estados unidos", "+16");
-        Pelicula peli10 = new Pelicula("El gran hotel budapest", "Wes Anderson", 2014, 99, "Comedia", "Estados unidos", "+16");
+        Pelicula peli1 = new Pelicula("La caida de la casa blanca", "Roland Emmerich", 2013, 131, "Accion", "Estados unidos", "+14",15);
+        Pelicula peli2 = new Pelicula("Ciudad de Dios", "Fernando Meirelles", 2002, 130, "Accion", "Brasil", "+18",15);
+        Pelicula peli3 = new Pelicula("Terminator","James Cameron", 1984, 108, "Ciencia ficcion","Estados unidos", "+16",20);
+        Pelicula peli4 = new Pelicula("Salvando al soldado Ryan", "Steven Spielberg", 1998, 169, "Belico","Estados Unidos", "+16",15);
+        Pelicula peli5 = new Pelicula("Matrix", "Hermanas Wachowski", 2001, 136, "Ciencia ficcion", "Estados unidos", "+16",20);
+        Pelicula peli6 = new Pelicula("Robots", "Chris Wedge", 2005, 84, "Animacion", "Estados unidos", "+4",20);
+        Pelicula peli7 = new Pelicula("Enemigo a las puertas", "Jean-Jacques Annaud", 2001, 131, "Accion", "Estados unidos", "+16",20);
+        Pelicula peli8 = new Pelicula("Interstellar  ", "Christopher Nolan", 2014, 169,"Ciencia ficcion","Estados undidos", "+13",20);
+        Pelicula peli9 = new Pelicula("The Godfather", "Francis Ford Coppola", 1972, 177, "Gangsters", "Estados unidos", "+16",20);
+        Pelicula peli10 = new Pelicula("El gran hotel budapest", "Wes Anderson", 2014, 99, "Comedia", "Estados unidos", "+16",20);
         pelis.add(peli1); pelis.add(peli2); pelis.add(peli3); pelis.add(peli4); pelis.add(peli5); pelis.add(peli6); pelis.add(peli7); pelis.add(peli8); pelis.add(peli9);pelis.add(peli10);
         Cartelera cartelera = new Cartelera(pelis);
         return cartelera;

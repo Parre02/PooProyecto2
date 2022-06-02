@@ -77,6 +77,9 @@ public class NewMain {
                                         Cartelera.imprimirCartelera(cartelera);
                                         System.out.println(" ");
                                         System.out.println("Que pelicula desea ver? ");
+                                        System.out.println("Para elegir la pelicula todo miniscula");
+                                        String varElegirPeli = entrada.nextLine();
+
 
 
                                     }
@@ -91,7 +94,7 @@ public class NewMain {
                                     System.out.println("Desea imprimir la cartelera? 1 si, 2 no");
                                     int varOpcionPrint = entrada.nextInt();
                                     if(varOpcionPrint == 1){
-
+                                        Cartelera.imprimirCartelera(cartelera);
                                     }
                                     else{
                                         System.out.println("Que pelicula desea ver");
@@ -170,7 +173,7 @@ public class NewMain {
                             case 9:
                                 break;
 
-                                
+
                             default:
                                 System.out.println("Opción errada\n");
                         }
